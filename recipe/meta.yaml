@@ -1,5 +1,5 @@
 {% set name = "requests-pelican" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/requests_pelican-{{ version }}.tar.gz
-  sha256: 212f680e71f423ba0a2ebb79f4b4c196b00dc1c083ba09295c842a260abdc90b
+  sha256: b1893cd78d0c8478555662bf3102ee722548cb4cae05945911775a2d0677e273
 
 build:
   noarch: python
@@ -17,16 +17,13 @@ build:
 requirements:
   host:
     - python {{ python_min }}
-    - setuptools >=61
+    - setuptools >=70.0
     - setuptools-scm >=3.4.3
     - wheel
     - pip
   run:
-    - cachetools
     - python >={{ python_min }}
     - requests
-    - requests-cache
-    - scitokens
 
 test:
   requires:
@@ -35,6 +32,7 @@ test:
     - pytest-remotedata
     - python {{ python_min }}
     - requests-mock
+    - requests-scitokens
   commands:
     - python3 -m pip check
     - python3 -m pip show requests-pelican
